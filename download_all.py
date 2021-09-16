@@ -71,12 +71,14 @@ def download_all(phpsessid):
         files += [
             ('Poses_D2_Positions_{}.tgz'.format(subject_id),
              'download=1&filepath=Poses/D2_Positions&filename=SubjectSpecific_{}.tgz'.format(id)),
-            ('Poses_D3_Positions_{}.tgz'.format(subject_id),
-             'download=1&filepath=Poses/D3_Positions&filename=SubjectSpecific_{}.tgz'.format(id)),
+            # ('Poses_D3_Positions_{}.tgz'.format(subject_id),
+            #  'download=1&filepath=Poses/D3_Positions&filename=SubjectSpecific_{}.tgz'.format(id)),
             ('Poses_D3_Positions_mono_{}.tgz'.format(subject_id),
              'download=1&filepath=Poses/D3_Positions_mono&filename=SubjectSpecific_{}.tgz'.format(id)),
-            ('Poses_D3_Positions_mono_universal_{}.tgz'.format(subject_id),
-             'download=1&filepath=Poses/D3_Positions_mono_universal&filename=SubjectSpecific_{}.tgz'.format(id)),
+            # ('Poses_D3_Positions_mono_universal_{}.tgz'.format(subject_id),
+            #  'download=1&filepath=Poses/D3_Positions_mono_universal&filename=SubjectSpecific_{}.tgz'.format(id)),
+            ('Segments_mat_gt_bb_{}.tgz'.format(subject_id),
+             'download=1&filepath=Segments/mat_gt_bb&filename=SubjectSpecific_{}.tgz'.format(id)),
             ('Videos_{}.tgz'.format(subject_id),
              'download=1&filepath=Videos&filename=SubjectSpecific_{}.tgz'.format(id)),
         ]
