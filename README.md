@@ -49,7 +49,7 @@ $ docker-compose run --rm --user="$(id -u):$(id -g)" main python3 download_all.p
 6. Extract the files using the provided script.
 
 ```shell
-./extract_all.sh --source=archive --destination=/somewhere/Human3.6M
+./extract_all.sh --source=archives --destination=/somewhere/Human3.6M
 ```
 ## License
 
