@@ -1,6 +1,6 @@
 **This is a fork of the [h36m-fetch tool by Aiden Nibali](https://github.com/anibali/h36m-fetch). Main difference is
 that the tar files are extracted in a manner such that subject based folder structure is preserved. Further
-it does not process the dataset in any manner and that is left to the user.** 
+it does not process the dataset in any manner, simply downloads and extracts the archives.** 
 
 # Human3.6M dataset fetcher
 
@@ -17,6 +17,8 @@ the maintainers of the dataset.**
 ## Requirements
 
 * Python 3
+* requests
+* tqdm
 * [`axel`](https://github.com/axel-download-accelerator/axel)
 
 Alternatively, a Dockerfile is provided which has all of the
@@ -26,16 +28,29 @@ requirements set up.
 
 1. Firstly, you will need to create an account at
    http://vision.imar.ro/human3.6m/ to gain access to the dataset.
+
 2. Once your account has been approved, log in and inspect your cookies
    to find your PHPSESSID.
+
 3. Copy the configuration file `config.ini.example` to `config.ini`
    and fill in your PHPSESSID.
-4. Use the `download_all.py` script to download the dataset as such:
-```bash
+
+4. Build the docker container (must be in root of this repo)
+
+```shell
+docker-compose build
+```
+
+5. Use the `download_all.py` script to download the dataset as such:
+```shell
 $ docker-compose run --rm --user="$(id -u):$(id -g)" main python3 download_all.py
 ```
-5.
 
+6. Extract the files using the provided script.
+
+```shell
+./extract_all.sh --source=archive --destination=/somewhere/Human3.6M
+```
 ## License
 
 The code in this repository is licensed under the terms of the
