@@ -39,36 +39,36 @@ RUN curl -sLo ~/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-4.4.
 ENV CONDA_AUTO_UPDATE_CONDA=false
 RUN conda install -y "conda>=4.4.11" && conda clean -ya
 
-# Install FFmpeg
-RUN conda install --no-update-deps -y -c conda-forge ffmpeg=3.2.4 \
- && conda clean -ya
-
-# Install NumPy
-RUN conda install --no-update-deps -y numpy=1.14.5 \
- && conda clean -ya
+## Install FFmpeg
+#RUN conda install --no-update-deps -y -c conda-forge ffmpeg=3.2.4 \
+# && conda clean -ya
+#
+## Install NumPy
+#RUN conda install --no-update-deps -y numpy=1.14.5 \
+# && conda clean -ya
 
 # Install build tools
 RUN sudo apt-get update \
  && sudo apt-get install -y build-essential gfortran libncurses5-dev \
  && sudo rm -rf /var/lib/apt/lists/*
 
-# Build and install CDF
-RUN cd /tmp \
- && curl -sLO https://github.com/anibali/h36m-fetch/releases/download/v0.0.0/cdf38_0-dist-all.tar.gz \
- && tar xzf cdf38_0-dist-all.tar.gz \
- && cd cdf38_0-dist \
- && make OS=linux ENV=gnu CURSES=yes FORTRAN=no UCOPTIONS=-O2 SHARED=yes all \
- && sudo make INSTALLDIR=/usr/local/cdf install \
- && cd .. \
- && rm -rf cdf38_0-dist
+## Build and install CDF
+#RUN cd /tmp \
+# && curl -sLO https://github.com/anibali/h36m-fetch/releases/download/v0.0.0/cdf38_0-dist-all.tar.gz \
+# && tar xzf cdf38_0-dist-all.tar.gz \
+# && cd cdf38_0-dist \
+# && make OS=linux ENV=gnu CURSES=yes FORTRAN=no UCOPTIONS=-O2 SHARED=yes all \
+# && sudo make INSTALLDIR=/usr/local/cdf install \
+# && cd .. \
+# && rm -rf cdf38_0-dist
 
 # Install other dependencies from pip
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Create empty SpacePy config (suppresses an annoying warning message)
-RUN mkdir /home/user/.spacepy && echo "[spacepy]" > /home/user/.spacepy/spacepy.rc
-RUN sudo chmod 777 /home/user/.spacepy/spacepy.rc
+#RUN mkdir /home/user/.spacepy && echo "[spacepy]" > /home/user/.spacepy/spacepy.rc
+#RUN sudo chmod 777 /home/user/.spacepy/spacepy.rc
 
 # Copy scripts into the image
 COPY --chown=user:user . /app

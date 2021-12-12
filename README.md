@@ -1,3 +1,7 @@
+**This is a fork of the [h36m-fetch tool by Aiden Nibali](https://github.com/anibali/h36m-fetch). Main difference is
+that the tar files are extracted in a manner such that subject based folder structure is preserved. Further
+it does not process the dataset in any manner and that is left to the user.** 
+
 # Human3.6M dataset fetcher
 
 [Human3.6M](http://vision.imar.ro/human3.6m/description.php) is a 3D
@@ -14,15 +18,9 @@ the maintainers of the dataset.**
 
 * Python 3
 * [`axel`](https://github.com/axel-download-accelerator/axel)
-* CDF
-* ffmpeg 3.2.4
 
 Alternatively, a Dockerfile is provided which has all of the
-requirements set up. You can use it to run scripts like so:
-
-```bash
-$ docker-compose run --rm --user="$(id -u):$(id -g)" main python3 <script>
-```
+requirements set up.
 
 ## Usage
 
@@ -32,23 +30,11 @@ $ docker-compose run --rm --user="$(id -u):$(id -g)" main python3 <script>
    to find your PHPSESSID.
 3. Copy the configuration file `config.ini.example` to `config.ini`
    and fill in your PHPSESSID.
-4. Use the `download_all.py` script to download the dataset,
-   `extract_all.py` to extract the downloaded archives, and
-   `process_all.py` to preprocess the dataset into an easier to use
-   format.
-
-## Frame sampling
-
-Not all frames are selected during the preprocessing step. We assume
-that the data will be used in the Protocol #2 setup (see
-["Compositional Human Pose Regression"](https://arxiv.org/abs/1704.00159)),
-so for subjects S9 and S11 every 64th frame is used. For the training
-subjects (S1, S5, S6, S7, and S8), only "interesting" frames are used.
-That is, near-duplicate frames during periods of low movement are
-skipped.
-
-You can edit `select_frame_indices_to_include()` in `process_all.py` to
-change this behaviour.
+4. Use the `download_all.py` script to download the dataset as such:
+```bash
+$ docker-compose run --rm --user="$(id -u):$(id -g)" main python3 download_all.py
+```
+5.
 
 ## License
 
